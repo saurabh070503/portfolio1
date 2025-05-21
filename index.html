@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Saurabh Patil - Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
   <script src="script.js" defer></script>
   <style>
     /* Button Styling */
@@ -117,23 +125,41 @@
     </section>
 
     <section id="projects" class="container section">
-        <h2>Projects</h2>
-        <div class="project">
-            <img src="full stack.jpg" alt="Full Stack Web Development" class="project-image">
-            <h3>Full Stack Web Development</h3>
-            <p>Developed a comprehensive Online Bus Reservation System with user-friendly interface and robust backend.</p>
-        </div>
-        <div class="project">
-            <img src="audio.jpg" alt="Audio Classification" class="project-image">
-            <h3>Audio Classification</h3>
-            <p>Created a Python-based model for audio signal comparison, enhancing accuracy in audio recognition tasks.</p>
-        </div>
-        <div class="project">
-            <img src="weed.jpg" alt="Weed Plant Detection" class="project-image">
-            <h3>Weed Plant Detection</h3>
-            <p>Implemented a Machine Learning model to detect weed plants among crops, aiding farmers in efficient crop management.</p>
-        </div>
-    </section>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+    
+    <div class="project-card" data-aos="fade-up">
+      <img src="audio.jpg" alt="Audio Signal Comparison" class="project-image">
+      <h3>Audio Signal Comparison using Python</h3>
+      <p>
+        • <strong>Technologies:</strong> Python, Librosa, NumPy, Sounddevice, FFT<br>
+        • Developed a Python-based model to authenticate mechanical component sounds in car manufacturing for Toyota Motors, Canada.<br>
+        • Leveraged advanced audio processing techniques to ensure accurate signal validation.
+      </p>
+    </div>
+
+    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+      <img src="weed.jpg" alt="Weed Plant Detection" class="project-image">
+      <h3>Weed Plant Detection using Deep Learning</h3>
+      <p>
+        • <strong>Technologies:</strong> Deep Learning, Python, YOLOv8, Computer Vision<br>
+        • Built a Deep Learning model to detect weed plants among crops using camera-based systems.<br>
+        • Facilitated improved agricultural productivity by reducing human effort and manpower through AI-driven solutions.
+      </p>
+    </div>
+
+    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+      <img src="full stack.jpg" alt="Online Bus Reservation System" class="project-image">
+      <h3>Online Bus Reservation System using Django</h3>
+      <p>
+        • <strong>Technologies:</strong> HTML, CSS, JavaScript, Django, Database Integration<br>
+        • Developed a full-stack web app for seamless bus ticket booking with interactive UI and database integration.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 
     <section id="education" class="container section">
         <h2>Education</h2>
