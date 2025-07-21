@@ -1,36 +1,31 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
+document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.carousel');
 
-    menuToggle.addEventListener('click', function() {
-        nav.classList.toggle('show');
+    carousels.forEach(carousel => {
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe(carousel);
+      });
+
+      function handleSwipe(carouselElement) {
+        const scrollAmount = carouselElement.querySelector('.carousel-item')?.offsetWidth || 300;
+
+        if (touchEndX < touchStartX - 50) {
+          // Swipe left
+          carouselElement.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        } else if (touchEndX > touchStartX + 50) {
+          // Swipe right
+          carouselElement.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+      }
     });
+  });
 
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
 
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-            if (nav.classList.contains('show')){
-                nav.classList.remove('show');
-            }
-        });
-    });
-
-    // Simple form submission handling (you'll need backend for actual submission)
-    const form = document.getElementById('contact-form');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Form submitted! (This is a placeholder, you need a backend to handle actual submissions.)');
-            form.reset();
-        });
-    }
-
-});
