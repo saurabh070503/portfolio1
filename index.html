@@ -2,205 +2,380 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Saurabh Patil - Portfolio</title>
   <link rel="stylesheet" href="style.css" />
- <!-- AOS CSS -->
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<!-- AOS JS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    AOS.init();
-  });
-</script>
-
-
-
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init({
+        duration: 1000,
+        once: true
+      });
+    });
+  </script>
   <script src="script.js" defer></script>
-  <style>
-    /* Button Styling */
-    .download-resume {
-      padding: 10px 20px;
-      background: linear-gradient(to right, #007bff, #0056b3);
-      color: #fff;
-      text-decoration: none;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      margin-left: 20px;
-    }
-
-    .download-resume:hover {
-      background: linear-gradient(to right, #0056b3, #003f7f);
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 768px) {
-      .header-right {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .download-resume {
-        margin-left: 0;
-      }
-    }
-  </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>Saurabh Patil</h1>
-      <div class="header-right">
-        <nav>
-          <ul>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-        <a href="Saurabh_Patil.pdf" class="download-resume" download>Download Resume</a>
-        <button class="menu-toggle">☰</button>
-      </div>
+    <div class="container header-container">
+      <h1 class="site-title">Saurabh Patil</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#profile">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="/Saurabh Patil.pdf" id="resume-btn"><button class="btn">Show Resume</button></a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle">☰</button>
     </div>
   </header>
 
-  <!-- Your existing content remains unchanged -->
-  <!-- Sections: profile, experience, projects, education, contact, footer -->
-
-
-    <section id="profile" class="container section profile-section">
-        <div class="profile-content">
-            <img src="profile.png" alt="Saurabh Patil" class="profile-image">
-            <div class="profile-text">
-                <h2>About Me</h2>
-                <p>I am a dedicated engineering student with a strong passion for coding, problem-solving, and technology. Proficient in Python, I specialize in developing innovative software solutions, including projects that integrate Flask and audio processing. With a focus on continuous learning and growth, I aim to apply my technical skills in top tech companies like Google or Microsoft. In addition to my engineering expertise, I have a keen interest in creative arts such as sketching, video editing, and photography, which I incorporate into my technical projects.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="container section">
-        <h2>Experience</h2>
-        <div class="experience-item">
-            <h3>Software Developer Intern</h3>
-            <p><strong>Orbittal Electromech Pvt Ltd</strong> (June 2024 - July 2024)</p>
-            <ul>
-                <li>Utilized a month as an offline intern at Orbital House Company</li>
-                <li>Worked on the project of Audio Signal Comparison Model using Python</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Machine Learning Intern</h3>
-            <p><strong>Bharat Forge Ltd</strong> (Feb 2024 — April 2024)</p>
-            <ul>
-                <li>Developed a Deep Learning model to detect weed plants among crops using camera</li>
-                <li>Worked on the project of Audio Signal Comparison Model using Python</li>
-                <li>Provided a useful tool for farmers for proper detection of weed plants, reducing human efforts and manpower</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Full Stack Web Development Intern</h3>
-            <p><strong>Edunet Foundation</strong> (Jan 2024 - April 2024)</p>
-            <ul>
-                <li>Worked as an online intern in Full Stack Web Development</li>
-                <li>Built a website for Online Bus Reservation System</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="projects" class="container section">
-  <h2 class="section-title">Projects</h2>
-  <div class="projects-grid">
-    
-    <div class="project-card" data-aos="fade-up">
-      <img src="audio.jpg" alt="Audio Signal Comparison" class="project-image">
-      <h3>Audio Signal Comparison using Python</h3>
-      <p>
-        • <strong>Technologies:</strong> Python, Librosa, NumPy, Sounddevice, FFT<br>
-        • Developed a Python-based model to authenticate mechanical component sounds in car manufacturing for Toyota Motors, Canada.<br>
-        • Leveraged advanced audio processing techniques to ensure accurate signal validation.
-      </p>
+  <section id="profile" class="section" data-aos="fade-up">
+    <div class="container profile-section">
+      <img src="Saurabh Patil.png" alt="Saurabh Patil" class="profile-image">
+      <div class="profile-text">
+        <h2>About Me</h2>
+        <p>Electronics and Telecommunication student with a
+strong interest in Software Development, Machine
+Learning, and Full-Stack Technologies. Seeking a
+software role to build impactful solutions in a Tech-driven
+Organization.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-      <img src="weed.jpg" alt="Weed Plant Detection" class="project-image">
-      <h3>Weed Plant Detection using Deep Learning</h3>
-      <p>
-        • <strong>Technologies:</strong> Deep Learning, Python, YOLOv8, Computer Vision<br>
-        • Built a Deep Learning model to detect weed plants among crops using camera-based systems.<br>
-        • Facilitated improved agricultural productivity by reducing human effort and manpower through AI-driven solutions.
-      </p>
+  <section id="education" class="section">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="education-item" data-aos="fade-up">
+        <h3>Bachelor of Engineering in Electronincs and Telecommunications (2021-2025)</h3>
+        <p>Vidya Pratishthan's Kamalnayan Bajaj Institute of Engineering and Technology, Baramati<br>
+          Savitribai Phule Pune University<br>
+        CGPA : 8.79 </p>
+      </div>
+      <div class="education-item" data-aos="fade-up" data-aos-delay="200">
+        <h3>Higher Secondary Education (2019–2021)</h3>
+        <p>
+          Shripatrao Bhosale Junior College, Dharashiv<br>
+          Percentage : 98.33 
+        </p>
+      </div>
+      <div class="education-item" data-aos="fade-up" data-aos-delay="400">
+        <h3>Secondary Education (2019)</h3>
+        <p>Chhatrapati Shivaji Highschool, Dharashiv<br>
+        Percentage : 92.20</p>
+      </div>
     </div>
+  </section>
 
-    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-      <img src="full stack.jpg" alt="Online Bus Reservation System" class="project-image">
-      <h3>Online Bus Reservation System using Django</h3>
-      <p>
-        • <strong>Technologies:</strong> HTML, CSS, JavaScript, Django, Database Integration<br>
-        • Developed a full-stack web app for seamless bus ticket booking with interactive UI and database integration.
-      </p>
+  <section id="experience" class="section">
+  <div class="container">
+    <h2 class="section-title">Work Experience</h2>
+    <div class="carousel-container">
+      <button class="carousel-btn left" onclick="scrollCarousel('experience-carousel', -1)">&#10094;</button>
+      <div class="carousel experience-carousel" id="experience-carousel">
+        <!-- Carousel Item -->
+        <div class="carousel-item">
+          <h3>Front End Development Intern</h3>
+          <p>Techplement (Jun 2025 - July 2025)</p>
+          <a href="https://www.linkedin.com/posts/saurabh0705_offer-letter-activity-7345986351059652610-YaTk?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADlJjiQBJBGV2imT865D4uCWlk65Rs98wfE">
+            <button class="details-btn1">Offer Letter</button>
+          </a>
+          <div>
+            <ul>
+              <li>Successfully completed company's project and contributed actively in it.</li>
+              <li>Gained hands-on experience in HTML, CSS, JavaScript and UI/UX</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <h3>Software Developer Intern</h3>
+          <p>Orbittal Electromech Eng Projects Pvt. Ltd., Pune (June 2024 – July 2024)</p>
+          <a href="https://www.linkedin.com/posts/saurabh0705_internship-softwaredevelopment-python-activity-7294305635574169600-e-bB?utm_source=share&utm_medium=member_desktop&rcm=ACoAADlJjiQBJBGV2imT865D4uCWlk65Rs98wfE">
+            <button class="details-btn1">Certificate</button>
+          </a>
+          <div>
+            <ul>
+              <li>Engineered an Audio Signal Comparison Model using Python in the R&D Department</li>
+              <li>Delivered a real-time audio analysis prototype, ensuring alignment with project specifications</li>
+              <li>Strengthened expertise in Flask and web development technologies to enhance the application interface.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <h3>Full Stack Application Development Intern</h3>
+          <p>Edunet Foundation (Feb 2024 - April 2024)</p>
+          <a href="https://www.linkedin.com/posts/saurabh0705_certificate-of-appreciation-activity-7208294790868713474-RhnR?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADlJjiQBJBGV2imT865D4uCWlk65Rs98wfE">
+            <button class="details-btn1">Certificate</button>
+          </a>
+          <div>
+            <ul>
+              <li>Designed and implemented a fully functional Online Bus Reservation System with both frontend and backend components.</li>
+              <li>Gained hands-on experience in HTML, CSS, JavaScript, Django, and Database Integration.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <h3>Machine Learning Intern</h3>
+          <p>Centre of Excellence supported by Bharat Forge Ltd  (Jan 2024 – Feb 2024)</p>
+          <a href="https://www.linkedin.com/posts/saurabh0705_weed-plant-detection-activity-7209019577282748416-9zwp?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADlJjiQBJBGV2imT865D4uCWlk65Rs98wfE">
+            <button class="details-btn1">Certificate</button>
+          </a>
+          <div>
+            <ul>
+              <li>Engineered a Machine Learning solution for weed plant detection to assist farmers in early-stage weed identification and crop management.</li>
+              <li>Enhanced detection accuracy using Python-based frameworks including YOLOv8, TensorFlow, OpenCV, and NumPy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn right" onclick="scrollCarousel('experience-carousel', 1)">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+<!-- Style -->
+<style>
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.carousel-item {
+  flex: 0 0 80%;
+  background: #303030;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  min-width: 300px;
+  max-width: 500px;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 20px;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.carousel-btn.left {
+  left: 0;
+}
+
+.carousel-btn.right {
+  right: 0;
+}
+
+.details {
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+
+<!-- Script -->
+<script>
+function scrollCarousel(id, direction) {
+  const carousel = document.getElementById(id);
+  const scrollAmount = carousel.offsetWidth * 0.8;
+  carousel.scrollBy({
+    left: direction * scrollAmount,
+    behavior: 'smooth'
+  });
+}
+
+document.querySelectorAll('.details-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const details = button.nextElementSibling;
+    details.classList.toggle('hidden');
+  });
+});
+</script>
+
+
+  <section id="projects" class="section">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+
+    <!-- Carousel Wrapper -->
+    <div class="carousel-wrapper">
+      <!-- Left Arrow -->
+      <button class="carousel-arrow left" onclick="scrollCarousel('projects-carousel', -1)">&#10094;</button>
+
+      <!-- Carousel Items -->
+      <div class="carousel projects-carousel" id="projects-carousel">
+        <div class="carousel-item">
+          <img src="audio.jpg" alt="Audio Project">
+          <h3>Audio Signal Comparison</h3>
+          <ul>
+            <li>Technologies: Python, HTML, CSS, JavaScript, Librosa, NumPy, Sounddevice, FFT</li>
+            <li>Designed and implemented an intelligent audio verification system for Toyota Motors, Canada</li>
+            <li>Utilized signal processing with Librosa and FFT to validate industrial sounds</li>
+          </ul>
+          <a href="https://github.com/saurabh070503/Audio-Classification-App">
+            <button class="details-btn1">Go to Project</button>
+          </a>
+        </div>
+
+        <div class="carousel-item">
+          <img src="weed.jpg" alt="Weed Detection Project">
+          <h3>Weed Plant Detection using Deep Learning</h3>
+          <ul>
+            <li>Technologies: Python, Deep Learning, YOLOv8, Computer Vision, NumPy</li>
+            <li>YOLOv8 model to detect weeds in crops using real-time camera input</li>
+            <li>Reduced manual labor via AI-powered weed identification</li>
+          </ul>
+          <a href="https://github.com/saurabh070503/Weed-Plant-Detection">
+            <button class="details-btn1">Go to Project</button>
+          </a>
+        </div>
+
+        <div class="carousel-item">
+          <img src="full stack.jpg" alt="Bus Reservation System">
+          <h3>Online Bus Reservation System using Django</h3>
+          <p>Technologies: HTML, CSS, JavaScript, Django, Database Integration</p>
+          <p>Developed a full-stack app for online ticket booking with Django backend and real-time updates.</p>
+          <a href="https://www.linkedin.com/posts/saurabh0705_certificate-of-completion-activity-7217936069848092674-FrX2">
+            <button class="details-btn1">Go to Project</button>
+          </a>
+        </div>
+
+        <div class="carousel-item">
+          <img src="logo.png" alt="E-Learning Website">
+          <h3>E-Learning Website for Techplement</h3>
+          <p>Technologies: HTML, CSS, JavaScript</p>
+          <p>Frontend platform built for structured learning through online courses.</p>
+          <a href="https://saurabh070503.github.io/Techplement/">
+            <button class="details-btn1">Go to Project</button>
+          </a>
+        </div>
+
+        <div class="carousel-item">
+          <img src="player.png" alt="Player Re-ID">
+          <h3>Player Reidentification using Deep Learning</h3>
+          <p>Technologies: YOLOv8, NumPy, Ultralytics</p>
+          <p>Model trained to track and identify players uniquely using bounding boxes.</p>
+          <a href="https://github.com/saurabh070503/Stealth-Mode">
+            <button class="details-btn1">Go to Project</button>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Arrow -->
+      <button class="carousel-arrow right" onclick="scrollCarousel('projects-carousel', 1)">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+
+  <section id="achievements" class="section">
+  <div class="container">
+    <h2 class="section-title">Achievements</h2>
+
+    <div class="carousel-wrapper">
+      <!-- Left Arrow -->
+      <button class="carousel-arrow left-arrow">&#10094;</button>
+
+      <!-- Carousel -->
+      <div class="carousel achievements-carousel">
+        <div class="carousel-item">
+          <img src="1.jpg" alt="Achievement 1">
+          <h3>University-Level Poster Making Competition</h3>
+          <p>Secured 2nd place (2024-25), 3rd place (2023-24) and 1st
+place (2022-23) at SPPU.</p>
+        </div>
+        <div class="carousel-item">
+          <img src="cummins.jpeg" alt="Achievement 2">
+          <h3>Cummins Scholarship Holder</h3>
+          <p>Awarded by Cummins India Foundation for academic excellence.</p>
+        </div>
+        <div class="carousel-item">
+          <img src="achievement3.jpg" alt="Achievement 3">
+          <h3>GDSC Hackathon Winner</h3>
+          <p>Won 1st place in Google Developer Student Club (GDSC) hackathon at our institute.</p>
+        </div>
+        <!-- Add more carousel-items as needed -->
+      </div>
+
+      <!-- Right Arrow -->
+      <button class="carousel-arrow right-arrow">&#10095;</button>
     </div>
 
   </div>
 </section>
 
+  <section id="socials" class="section">
+    <div class="container social-icons1">
+      <a href="https://www.linkedin.com/in/saurabh0705" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+      </div>
+      <div class="container social-icons">
+      <a href="https://www.instagram.com/saurabh.patil.in?igsh=MTN3Mmgzdzl5cXJ1Mg==" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+    </div>
+  </section>
 
-    <section id="education" class="container section">
-        <h2>Education</h2>
-        <div class="education-item">
-            <h3>Savitribai Phule Pune University</h3>
-            <p>Bachelor of Electronics and Telecommunications Engineering (2021 — 2025)</p>
-            <p>Vidya Pratishthan's Kamalnayan Bajaj Institute of Engineering and Technology, Baramati</p>
-        </div>
-        <div class="education-item">
-            <h3>Higher Secondary Education</h3>
-            <p>Shripatrao Bhosale Junior College, Dharashiv (2019-2021)</p>
-        </div>
-        <div class="education-item">
-            <h3>Secondary Education</h3>
-            <p>Chhatrapati Shivaji Highschool, Dharashiv (Up to 2019)</p>
-        </div>
-    </section>
-
-    <section id="contact" class="container section">
-        <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:saurabhpatilofficial3159@gmail.com">saurabhpatilofficial3159@gmail.com</a></p>
-        <p>Phone: +91 **********</p>
-        <p>Location: Baramati, Pune, India</p>
-        <form id="contact-form">
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Saurabh Patil. All Rights Reserved.</p>
-        </div>
-    </footer>
   
 
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Saurabh Patil. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- Resume Modal -->
+<div id="resume-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <iframe 
+      src="/Saurabh Patil.pdf" 
+      width="100%" 
+      height="600px" 
+      allowfullscreen 
+      sandbox="allow-scripts allow-same-origin">
+    </iframe>
+  </div>
+</div>
 </body>
 </html>
