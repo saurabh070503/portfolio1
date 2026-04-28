@@ -167,6 +167,14 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
+    .logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -1063,6 +1071,9 @@
     }
   </style>
 </head>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js">
+</script>
 <body>
 
 <!-- Loader -->
@@ -1096,7 +1107,9 @@
 <!-- Navbar -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo">SP.</a>
+    <a href="#hero" class="nav-logo">
+      <img src="Profile logo.png" alt="Saurabh Patil Logo" class="logo-img">
+    </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#education">Education</a></li>
@@ -1128,7 +1141,13 @@
           Hi, I'm<br>
           <span class="gradient-word">Saurabh Patil</span>
         </h1>
-        <p class="hero-role">Electronics & Telecommunication Engineer with a passion for <strong>Software Development</strong>, <strong>Machine Learning</strong>, and building impactful full-stack solutions.</p>
+        <p class="hero-role">Java Full Stack Developer | UI-UX Designer | Built scalable systems & ML solutions | 
+Ex-Cognizant | Turning real-world problems into production-ready applications</p>
+          <div class="hero-highlights">
+            <span>🏆 Hackathon Winner</span>
+            <span>🎓 Cummins Scholar</span>
+            <span>🚀 4 Internships Completed</span>
+          </div>
         <div class="hero-ctas">
           <a href="#projects" class="btn-primary"><i class="fas fa-rocket"></i> View My Work</a>
           <a href="#contact" class="btn-outline"><i class="fas fa-paper-plane"></i> Get in Touch</a>
@@ -1150,7 +1169,7 @@
       </div>
       <div class="hero-image-wrap">
         <div class="hero-avatar-ring">
-          <img src="Saurabh Patil.png" alt="Saurabh Patil" class="hero-avatar">
+          <img src="/Saurabh Patil.png" alt="Saurabh Patil" class="hero-avatar">
           <div class="hero-badge">
             <span class="badge-icon">🏆</span>
             <div>
@@ -1174,7 +1193,7 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-image-wrap">
-        <img src="Saurabh Patil.png" alt="Saurabh Patil" class="about-image">
+        <img src="/Saurabh Patil.png" alt="Saurabh Patil" class="about-image">
         <div class="about-image-glow"></div>
       </div>
       <div>
@@ -1186,7 +1205,10 @@
         <p style="color:var(--text-muted);margin-top:1rem;font-size:0.95rem;line-height:1.8;">
           My experience spans 4 internships covering Frontend Development, Full-Stack, Machine Learning, and Signal Processing. I'm driven by building solutions that are both technically sound and genuinely useful.
         </p>
-        <p style="color:var(--text-muted);margin-top:1rem;font-size:0.95rem;line-height:1.8;">Built a scalable fleet system managing 100+ vehicles with optimized database design and real-time dashboards, improving operational efficiency by 30%.</p>
+        <p style="color:var(--text-muted);margin-top:1rem;font-size:0.95rem;line-height:1.8;">Built a fleet management system handling <strong>100+ vehicles</strong>, 
+reducing manual tracking efforts by <strong>30%</strong>.</p>
+        <p style="color:var(--text-muted);margin-top:1rem;font-size:0.95rem;line-height:1.8;">Currently seeking opportunities as a Software Developer / Java Full Stack Engineer 
+where I can build scalable backend systems and impactful applications.</p>
         <div class="skill-tags">
           <span class="skill-tag">Python</span>
           <span class="skill-tag">Java</span>
@@ -1339,47 +1361,47 @@
 
       <!-- Item -->
       <div class="tech-card">
-        <img src="java.png" alt="Java">
+        <img src="/java.png" alt="Java">
         <span>Java</span>
       </div>
 
       <div class="tech-card">
-        <img src="springboot.png" alt="Spring Boot">
+        <img src="/springboot.png" alt="Spring Boot">
         <span>Spring Boot</span>
       </div>
 
       <div class="tech-card">
-        <img src="python.png" alt="Python">
+        <img src="/python.png" alt="Python">
         <span>Python</span>
       </div>
 
       <div class="tech-card">
-        <img src="machinelearning.png" alt="Machine Learning">
+        <img src="/machinelearning.png" alt="Machine Learning">
         <span>Machine Learning</span>
       </div>
 
       <div class="tech-card">
-        <img src="deeplearning.jpeg" alt="Deep Learning">
+        <img src="/deeplearning.jpeg" alt="Deep Learning">
         <span>Deep Learning</span>
       </div>
 
       <div class="tech-card">
-        <img src="uiux.jpeg" alt="UI UX">
+        <img src="/uiux.jpeg" alt="UI UX">
         <span>UI/UX</span>
       </div>
 
       <div class="tech-card">
-        <img src="api.png" alt="REST API">
+        <img src="/api.png" alt="REST API">
         <span>REST APIs</span>
       </div>
 
       <div class="tech-card">
-        <img src="react.png" alt="React">
+        <img src="/react.png" alt="React">
         <span>React</span>
       </div>
 
       <div class="tech-card">
-        <img src="fullstack.png" alt="Full Stack">
+        <img src="/fullstack.png" alt="Full Stack">
         <span>Full Stack Web Development</span>
       </div>
 
@@ -1396,7 +1418,7 @@
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="tfms.png" alt="Fleet Management System" loading="lazy">
+          <img src="/tfms.png" alt="Fleet Management System" loading="lazy">
           <div class="project-overlay">
             <a href="#" target="_blank" class="project-overlay-btn">
               <i class="fas fa-external-link-alt"></i> View Project
@@ -1405,7 +1427,9 @@
         </div>
         <div class="project-body">
           <h3>Transportation Fleet Management System (TFMS)</h3>
-          <p>Full-stack fleet management platform enabling vehicle tracking, trip management, fuel monitoring, and maintenance scheduling using MVC architecture.</p>
+          <p>Designed a scalable fleet management system using MVC architecture, 
+              optimized database queries, and modular service layers to support real-time operations.
+          </p>
           <div class="tech-tags">
             <span class="tech-tag">Java</span>
             <span class="tech-tag">Spring MVC</span>
@@ -1421,7 +1445,7 @@
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="audio.jpg" alt="Audio Signal Comparison" loading="lazy">
+          <img src="/audio.jpg" alt="Audio Signal Comparison" loading="lazy">
           <div class="project-overlay">
             <a href="https://github.com/saurabh070503/Audio-Classification-App" target="_blank" class="project-overlay-btn">
               <i class="fab fa-github"></i> View Project
@@ -1464,7 +1488,7 @@
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="full stack.jpg" alt="Bus Reservation" loading="lazy">
+          <img src="/full stack.jpg" alt="Bus Reservation" loading="lazy">
           <div class="project-overlay">
             <a href="https://www.linkedin.com/posts/saurabh0705_certificate-of-completion-activity-7217936069848092674-FrX2" target="_blank" class="project-overlay-btn">
               <i class="fas fa-external-link-alt"></i> View Project
@@ -1485,7 +1509,7 @@
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="logo.png" alt="E-Learning" loading="lazy" style="object-fit:contain;background:#111;">
+          <img src="/logo.png" alt="E-Learning" loading="lazy" style="object-fit:contain;background:#111;">
           <div class="project-overlay">
             <a href="https://saurabh070503.github.io/Techplement/" target="_blank" class="project-overlay-btn">
               <i class="fas fa-external-link-alt"></i> Live Demo
@@ -1505,7 +1529,7 @@
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="player.png" alt="Player Re-ID" loading="lazy">
+          <img src="/player.png" alt="Player Re-ID" loading="lazy">
           <div class="project-overlay">
             <a href="https://github.com/saurabh070503/Stealth-Mode" target="_blank" class="project-overlay-btn">
               <i class="fab fa-github"></i> View Project
@@ -1546,12 +1570,13 @@
       </div>
       <div class="achievement-card">
         <div class="achievement-icon">🏆</div>
-        <h3>GDSC Hackathon Winner</h3>
+        <h3> Hackathon Winner</h3>
         <p>Secured 1st place in the Google Developer Student Club hackathon at our institute.</p>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- ===================== CONTACT ===================== -->
 <section id="contact">
@@ -1688,16 +1713,34 @@
 
   /* ---- CONTACT FORM ---- */
   document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('.form-submit');
+  e.preventDefault();
+
+  const btn = this.querySelector('.form-submit');
+  btn.innerHTML = "Sending...";
+  btn.disabled = true;
+
+  emailjs.sendForm(
+    "service_qzlxh5s",   // paste service ID
+    "template_7312vzs",  // paste template ID
+    this
+  )
+  .then(() => {
     btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
     btn.style.background = 'linear-gradient(135deg, #00d4aa, #0099cc)';
+    this.reset();
+
     setTimeout(() => {
       btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
       btn.style.background = '';
-      this.reset();
+      btn.disabled = false;
     }, 3000);
+  })
+  .catch((error) => {
+    console.error("EmailJS Error:", error);
+    btn.innerHTML = "Failed ❌";
+    btn.disabled = false;
   });
+});
 
   /* ---- TOUCH SWIPE (kept from original) ---- */
   document.querySelectorAll('.carousel').forEach(carousel => {
@@ -1709,6 +1752,10 @@
       if (Math.abs(diff) > 50) carousel.scrollBy({ left: diff > 0 ? amount : -amount, behavior: 'smooth' });
     });
   });
+
+  (function() {
+  emailjs.init("mZkeZVNcxNbFMdF77"); // paste your public key
+    })();
 </script>
 </body>
 </html>
