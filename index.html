@@ -1712,35 +1712,59 @@ where I can build scalable backend systems and impactful applications.</p>
   });
 
   /* ---- CONTACT FORM ---- */
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
+  /// ✅ Initialize EmailJS
+(function() {
+  emailjs.init("mZkeZVNcxNbFMdF77");
+})();
 
-  const btn = this.querySelector('.form-submit');
-  btn.innerHTML = "Sending...";
-  btn.disabled = true;
+// ✅ CONTACT FORM
+const form = document.getElementById('contact-form');
 
-  emailjs.sendForm(
-    "service_nh1nbo4",   // paste service ID
-    "template_7312vzs",  // paste template ID
-    this
-  )
-  .then(() => {
-    btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-    btn.style.background = 'linear-gradient(135deg, #00d4aa, #0099cc)';
-    this.reset();
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-    setTimeout(() => {
-      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-      btn.style.background = '';
-      btn.disabled = false;
-    }, 3000);
-  })
-  .catch((error) => {
-    console.error("EmailJS Error:", error);
-    btn.innerHTML = "Failed ❌";
-    btn.disabled = false;
+    const btn = this.querySelector('.form-submit');
+    btn.innerHTML = "Sending...";
+    btn.disabled = true;
+
+    // ✅ 1. Send message to YOU
+    const sendToMe = emailjs.sendForm(
+      "service_nh1nbo4",
+      "template_1dfanzm",
+      this
+    );
+
+    // ✅ 2. Auto reply to USER
+    const autoReply = emailjs.sendForm(
+      "service_nh1nbo4",
+      "template_7312vzs",
+      this
+    );
+
+    // ✅ Run both
+    Promise.all([sendToMe, autoReply])
+      .then(() => {
+        btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+        btn.style.background = 'linear-gradient(135deg, #00d4aa, #0099cc)';
+        this.reset();
+
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+
+        btn.innerHTML = "Failed ❌";
+        btn.disabled = false;
+
+        alert("Error: " + error.text);
+      });
   });
-});
+}
 
   /* ---- TOUCH SWIPE (kept from original) ---- */
   document.querySelectorAll('.carousel').forEach(carousel => {
@@ -1753,9 +1777,7 @@ where I can build scalable backend systems and impactful applications.</p>
     });
   });
 
-  (function() {
-  emailjs.init("mZkeZVNcxNbFMdF77"); // paste your public key
-    })();
+  
 </script>
 </body>
 </html>
