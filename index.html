@@ -1040,7 +1040,7 @@
   </style>
 </head>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <body>
 
 <!-- Loader -->
@@ -1345,12 +1345,12 @@ where I can build scalable backend systems and impactful applications.</p>
       </div>
 
       <div class="tech-card">
-        <img src="deeplearning.jpeg" alt="Deep Learning">
+        <img src="/deeplearning.jpeg" alt="Deep Learning">
         <span>Deep Learning</span>
       </div>
 
       <div class="tech-card">
-        <img src="uiux.jpeg" alt="UI UX">
+        <img src="/uiux.jpeg" alt="UI UX">
         <span>UI/UX</span>
       </div>
 
@@ -1575,26 +1575,73 @@ where I can build scalable backend systems and impactful applications.</p>
           </a>
         </div>
       </div>
-      <form class="contact-form" id="contact-form" novalidate>
-        <input type="hidden" name="title" value="Portfolio Contact Form">
-        <input type="hidden" name="time" value="">
+      
+<form class="contact-form" id="contact-form" novalidate>
 
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" name="name" placeholder="Saurabh Patil" required>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" name="email" placeholder="hello@example.com" required>
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea name="message" placeholder="Tell me about your project or opportunity..." required></textarea>
-        </div>
-        <button type="submit" class="form-submit">
-          <i class="fas fa-paper-plane"></i> Send Message
-        </button>
-      </form>
+  <input type="hidden" name="title" value="Portfolio Contact Form">
+  <input type="hidden" name="time" value="">
+
+  <div class="form-group">
+    <label>Your Name</label>
+    <input
+      type="text"
+      name="name"
+      placeholder="Saurabh Patil"
+      maxlength="100"
+      autocomplete="name"
+      required
+    >
+  </div>
+
+  <div class="form-group">
+    <label>Email Address</label>
+    <input
+      type="email"
+      name="email"
+      placeholder="hello@example.com"
+      maxlength="254"
+      autocomplete="email"
+      required
+    >
+  </div>
+
+  <div class="form-group">
+    <label>Message</label>
+    <textarea
+      name="message"
+      placeholder="Tell me about your project or opportunity..."
+      maxlength="5000"
+      required
+    ></textarea>
+  </div>
+
+  <!-- Honeypot spam protection -->
+  <div
+    aria-hidden="true"
+    style="position:absolute;left:-9999px;"
+  >
+    <label>Leave this field empty</label>
+    <input
+      type="text"
+      name="company"
+      tabindex="-1"
+      autocomplete="off"
+    >
+  </div>
+
+  <button type="submit" class="form-submit">
+    <i class="fas fa-paper-plane"></i> Send Message
+  </button>
+
+  <p
+    id="contact-status"
+    role="status"
+    aria-live="polite"
+    style="font-size:0.85rem;margin-top:0.5rem;"
+  ></p>
+
+</form>
+
     </div>
   </div>
 </section>
@@ -1669,91 +1716,201 @@ where I can build scalable backend systems and impactful applications.</p>
     });
   });
 
-  /* ---- CONTACT FORM ---- */
-  const EMAILJS_PUBLIC_KEY = "mZkeZVNcxNbFMdF77";
-  const EMAILJS_SERVICE_ID = "service_nh1nbo4";
-  const CONTACT_TEMPLATE_ID = "template_1dfanzm";
-  const AUTO_REPLY_TEMPLATE_ID = "template_7312vzs";
+  
+/* ================================================
+   CONTACT FORM - GOOGLE APPS SCRIPT
+   Saurabh Patil Portfolio
+================================================ */
 
-  if (typeof emailjs === 'undefined') {
-    console.error('EmailJS SDK failed to load. Check the script tag in the HTML head.');
+// 1. Google Apps Script Web App URL
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyR-CwY-lapqWVyFpOnLqszZVpBn1TdzK6Qx8vIZ2wuPTAnXBHyzEafiNezdVUsxnSg/exec";
+
+
+// 2. IST timestamp
+function getIstTimestamp() {
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    dateStyle: "medium",
+    timeStyle: "short"
+  }).format(new Date());
+}
+
+
+// 3. Button state management
+function setButtonState(
+  label,
+  loading = false,
+  success = false
+) {
+
+  const btn = document.querySelector(
+    "#contact-form .form-submit"
+  );
+
+  if (!btn) return;
+
+  btn.disabled = loading;
+  btn.innerHTML = label;
+
+  if (success) {
+    btn.style.background =
+      "linear-gradient(135deg, #00d4aa, #0099cc)";
   } else {
-    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    btn.style.background = "";
   }
+}
 
-  function getIstTimestamp() {
-    const now = new Date();
-    return new Intl.DateTimeFormat('en-IN', {
-      timeZone: 'Asia/Kolkata',
-      dateStyle: 'medium',
-      timeStyle: 'short'
-    }).format(now);
-  }
 
-  function setButtonState(label, loading = false, success = false) {
-    const btn = document.querySelector('#contact-form .form-submit');
-    if (!btn) return;
+// 4. Contact form submission
+const contactForm = document.getElementById("contact-form");
 
-    btn.disabled = loading;
-    btn.innerHTML = label;
+if (contactForm) {
 
-    if (success) {
-      btn.style.background = 'linear-gradient(135deg, #00d4aa, #0099cc)';
-    } else {
-      btn.style.background = '';
-    }
-  }
+  contactForm.addEventListener("submit", async function(e) {
 
-  document.getElementById('contact-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const form = this;
+
+    const status = document.getElementById(
+      "contact-status"
+    );
+
+    // Validate form
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
 
-    if (typeof emailjs === 'undefined') {
-      console.error('EmailJS SDK is unavailable.');
-      setButtonState('<i class="fas fa-times"></i> Failed — Try Again', false, false);
+    const btn = form.querySelector(".form-submit");
+
+    if (btn.disabled) return;
+
+    // Collect values
+    const name = form.querySelector(
+      'input[name="name"]'
+    ).value.trim();
+
+    const email = form.querySelector(
+      'input[name="email"]'
+    ).value.trim();
+
+    const message = form.querySelector(
+      'textarea[name="message"]'
+    ).value.trim();
+
+    // Additional validation
+    if (!name || !email || !message) {
+      status.textContent =
+        "Please complete all fields.";
+
+      status.style.color = "#ff6b6b";
       return;
     }
 
-    const name = form.querySelector('input[name="name"]').value.trim();
-    const email = form.querySelector('input[name="email"]').value.trim();
-    const message = form.querySelector('textarea[name="message"]').value.trim();
+    // Prepare form data
+    form.querySelector(
+      'input[name="time"]'
+    ).value = getIstTimestamp();
 
-    form.querySelector('input[name="time"]').value = getIstTimestamp();
-    form.querySelector('input[name="title"]').value = 'Portfolio Contact Form';
+    form.querySelector(
+      'input[name="title"]'
+    ).value = "Portfolio Contact Form";
 
-    setButtonState('<i class="fas fa-paper-plane"></i> Sending...', true, false);
+    // Loading state
+    status.textContent = "";
+
+    setButtonState(
+      '<i class="fas fa-spinner fa-spin"></i> Sending...',
+      true,
+      false
+    );
 
     try {
-      await emailjs.sendForm(EMAILJS_SERVICE_ID, CONTACT_TEMPLATE_ID, form);
 
-      try {
-        await emailjs.sendForm(EMAILJS_SERVICE_ID, AUTO_REPLY_TEMPLATE_ID, form);
-        setButtonState('<i class="fas fa-check"></i> Message Sent!', false, true);
-        form.reset();
-      } catch (autoReplyError) {
-        console.error('EmailJS auto-reply failed:', autoReplyError);
-        setButtonState('<i class="fas fa-exclamation-triangle"></i> Message Received — Auto-reply failed', false, false);
-      }
-    } catch (contactError) {
-      console.error('EmailJS contact notification failed:', contactError);
-      setButtonState('<i class="fas fa-times"></i> Failed — Try Again', false, false);
-      return;
+      // Convert form fields to URL-encoded data
+      const formData = new FormData(form);
+
+      const params = new URLSearchParams();
+
+      formData.forEach((value, key) => {
+        params.append(key, value);
+      });
+
+      // Send to Google Apps Script
+      await fetch(GOOGLE_SCRIPT_URL, {
+
+        method: "POST",
+
+        mode: "no-cors",
+
+        body: params
+
+      });
+
+      /*
+       * no-cors responses are opaque.
+       * A resolved fetch does not prove that
+       * Apps Script sent both emails.
+       */
+
+      setButtonState(
+        '<i class="fas fa-check"></i> Request Submitted',
+        false,
+        true
+      );
+
+      status.textContent =
+        "Your request has been submitted to the contact service. Email delivery is not yet verified. If you do not receive a confirmation, please contact me through LinkedIn.";
+
+      status.style.color = "#00d4aa";
+
+      // Keep the submitted values available
+      // until delivery can be independently verified.
+
+    } catch (error) {
+
+      console.error(
+        "Google Apps Script submission error:",
+        error
+      );
+
+      setButtonState(
+        '<i class="fas fa-times"></i> Failed — Try Again',
+        false,
+        false
+      );
+
+      status.textContent =
+        "Unable to submit your message. Please check your internet connection and try again.";
+
+      status.style.color = "#ff6b6b";
+
     } finally {
+
       window.setTimeout(() => {
-        const resetBtn = document.querySelector('#contact-form .form-submit');
-        if (resetBtn) {
-          resetBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-          resetBtn.style.background = '';
-          resetBtn.disabled = false;
+
+        const resetBtn = document.querySelector(
+          "#contact-form .form-submit"
+        );
+
+        if (resetBtn && !resetBtn.disabled) {
+
+          resetBtn.innerHTML =
+            '<i class="fas fa-paper-plane"></i> Send Message';
+
+          resetBtn.style.background = "";
+
         }
-      }, 3000);
+
+      }, 4000);
+
     }
+
   });
+
+}
 
   /* ---- TOUCH SWIPE (kept from original) ---- */
   document.querySelectorAll('.carousel').forEach(carousel => {
