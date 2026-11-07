@@ -14,36 +14,29 @@
        DESIGN TOKENS
     ============================================================ */
     :root {
-      --bg:        #080810;
-      --bg-card:   #0f0f1a;
-      --bg-glass:  rgba(15,15,30,0.6);
-      --border:    rgba(255,255,255,0.07);
-      --border-hi: rgba(255,255,255,0.15);
-      --accent:    #6c63ff;
-      --accent2:   #ff6b9d;
-      --accent3:   #00d4aa;
-      --text:      #f0eeff;
-      --text-muted:#9490b8;
-      --text-dim:  #5a5680;
-      --radius:    14px;
-      --radius-lg: 22px;
+      --bg: #02070d;
+      --bg-2: #0a1730;
+      --bg-card: rgba(11, 18, 30, 0.9);
+      --bg-card-strong: #0c1a2d;
+      --bg-glass: rgba(8, 15, 24, 0.72);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hi: rgba(255, 255, 255, 0.14);
+      --accent: #0d6efd;
+      --accent2: #5fa3ff;
+      --accent3: #80cafc;
+      --accent-strong: #1f7cff;
+      --accent-soft: #7bb7ff;
+      --text: #f5f8ff;
+      --text-muted: rgba(255, 255, 255, 0.76);
+      --text-dim: rgba(255, 255, 255, 0.55);
+      --text-on-light: #101826;
+      --radius: 14px;
+      --radius-lg: 20px;
       --font-head: 'Outfit', sans-serif;
       --font-body: 'DM Sans', sans-serif;
-      --glow:      0 0 40px rgba(108,99,255,0.2);
+      --glow: 0 0 30px rgba(13, 110, 253, 0.18);
       --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
     }
-    [data-theme="light"] {
-      --bg:       #f4f3ff;
-      --bg-card:  #ffffff;
-      --bg-glass: rgba(255,255,255,0.7);
-      --border:   rgba(0,0,0,0.07);
-      --border-hi:rgba(0,0,0,0.15);
-      --text:     #1a1830;
-      --text-muted:#5a5480;
-      --text-dim: #9490b8;
-      --glow:     0 0 40px rgba(108,99,255,0.1);
-    }
-
     /* ============================================================
        RESET & BASE
     ============================================================ */
@@ -51,11 +44,12 @@
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: var(--font-body);
-      background: var(--bg);
+      background: linear-gradient(180deg, #02070d 0%, var(--bg-2) 52%, #0d5bb8 100%);
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
       transition: background var(--transition), color var(--transition);
+      background-attachment: fixed;
     }
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
@@ -67,7 +61,7 @@
     ============================================================ */
     #progress-bar {
       position: fixed; top: 0; left: 0; height: 3px; width: 0%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      background: var(--accent);
       z-index: 9999;
       transition: width 0.1s linear;
     }
@@ -85,12 +79,9 @@
     .loader-name {
       font-family: var(--font-head);
       font-size: clamp(2rem, 6vw, 4rem);
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text);
     }
     .loader-bar-wrap {
       margin-top: 2rem;
@@ -101,7 +92,7 @@
     }
     .loader-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      background: var(--accent);
       animation: loaderFill 1.8s ease forwards;
     }
     @keyframes loaderFill { from { width: 0 } to { width: 100% } }
@@ -112,26 +103,11 @@
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: -1;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 30%);
       pointer-events: none;
-      opacity: 0.4;
     }
 
-    /* ============================================================
-       BACKGROUND ORBS
-    ============================================================ */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: -1;
-      animation: orbFloat 8s ease-in-out infinite alternate;
-    }
-    .orb-1 { width: 500px; height: 500px; top: -100px; left: -100px; background: rgba(108,99,255,0.15); animation-delay: 0s; }
-    .orb-2 { width: 400px; height: 400px; bottom: 20%; right: -80px; background: rgba(255,107,157,0.1); animation-delay: -3s; }
-    .orb-3 { width: 350px; height: 350px; top: 50%; left: 30%; background: rgba(0,212,170,0.08); animation-delay: -5s; }
-    @keyframes orbFloat { from { transform: translate(0,0) scale(1); } to { transform: translate(30px,40px) scale(1.1); } }
+    .orb { display: none; }
 
     /* ============================================================
        NAVBAR
@@ -158,22 +134,12 @@
       justify-content: space-between;
     }
     .nav-logo {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 1.4rem;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      display: none;
     }
 
     .logo-img {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
+      display: none;
+    }
 
     .nav-links {
       display: flex;
@@ -193,15 +159,15 @@
     .nav-links a.active { color: var(--text); }
     .nav-resume {
       font-size: 0.875rem;
-      font-weight: 600;
-      color: #fff;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      font-weight: 700;
+      color: #0d2d5f;
+      background: #d9f0ff;
       padding: 0.45rem 1.2rem;
       border-radius: 8px;
-      border: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid rgba(158, 210, 255, 0.7);
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
-    .nav-resume:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(108,99,255,0.4); }
+    .nav-resume:hover { transform: translateY(-1px); opacity: 0.96; }
 
     .nav-actions { display: flex; align-items: center; gap: 0.8rem; }
 
@@ -281,19 +247,19 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent-soft);
       margin-bottom: 1rem;
     }
     .section-label::before {
       content: '';
       width: 20px; height: 1px;
-      background: var(--accent);
+      background: var(--accent-soft);
     }
     .section-title {
       font-family: var(--font-head);
       font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      font-weight: 700;
+      letter-spacing: -0.035em;
       color: var(--text);
       line-height: 1.1;
     }
@@ -318,13 +284,13 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: rgba(108,99,255,0.1);
-      border: 1px solid rgba(108,99,255,0.25);
+      background: rgba(13, 110, 253, 0.08);
+      border: 1px solid rgba(13, 110, 253, 0.2);
       border-radius: 100px;
       padding: 0.35rem 1rem;
       font-size: 0.82rem;
       font-weight: 500;
-      color: var(--accent);
+      color: var(--accent-soft);
       margin-bottom: 1.5rem;
       animation: fadeSlideUp 0.8s ease both;
     }
@@ -337,61 +303,78 @@
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
     .hero-name {
       font-family: var(--font-head);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 800;
+      font-size: clamp(2.5rem, 4.4vw, 4.4rem);
+      font-weight: 700;
       letter-spacing: -0.04em;
       line-height: 1.0;
       color: var(--text);
       animation: fadeSlideUp 0.8s 0.1s ease both;
     }
     .hero-name .gradient-word {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 60%, var(--accent3) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text);
+      font-weight: 700;
+      background: none;
+      -webkit-text-fill-color: var(--text);
     }
     .hero-role {
-      font-size: 1.1rem;
+      font-size: 1.02rem;
       color: var(--text-muted);
       margin-top: 1.2rem;
-      max-width: 440px;
+      max-width: 500px;
       animation: fadeSlideUp 0.8s 0.2s ease both;
+    }
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.3rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+    .hero-highlights span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
     }
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-top: 2.5rem;
+      margin-top: 2.2rem;
       animation: fadeSlideUp 0.8s 0.3s ease both;
     }
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff;
-      font-weight: 600;
+      background: #d9f0ff;
+      color: #0a2d5a;
+      font-weight: 700;
       font-size: 0.9rem;
       padding: 0.75rem 1.8rem;
       border-radius: 10px;
-      border: none;
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(146, 210, 255, 0.8);
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(108,99,255,0.4); }
+    .btn-primary:hover { transform: translateY(-1px); opacity: 0.97; }
     .btn-outline {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: transparent;
-      color: var(--text);
-      font-weight: 600;
+      background: #d9f0ff;
+      color: #0a2d5a;
+      font-weight: 700;
       font-size: 0.9rem;
       padding: 0.75rem 1.8rem;
       border-radius: 10px;
-      border: 1px solid var(--border-hi);
+      border: 1px solid rgba(146, 210, 255, 0.8);
       transition: all 0.2s;
     }
-    .btn-outline:hover { background: var(--border); border-color: var(--accent); }
+    .btn-outline:hover { background: #cfeaff; border-color: rgba(146, 210, 255, 1); }
 
     .hero-stats {
       display: flex;
@@ -403,11 +386,8 @@
     .stat-num {
       font-family: var(--font-head);
       font-size: 2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-weight: 700;
+      color: var(--accent-soft);
     }
     .stat-label { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.1rem; }
 
@@ -419,36 +399,27 @@
     }
     .hero-avatar-ring {
       position: relative;
-      width: 340px; height: 340px;
+      width: 320px;
+      height: 320px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.7rem;
     }
-    .hero-avatar-ring::before {
-      content: '';
-      position: absolute; inset: -3px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
-      animation: spinSlow 6s linear infinite;
-    }
-    .hero-avatar-ring::after {
-      content: '';
-      position: absolute; inset: -20px;
-      border-radius: 50%;
-      border: 1px dashed rgba(108,99,255,0.3);
-      animation: spinSlow 12s linear infinite reverse;
-    }
-    @keyframes spinSlow { to { transform: rotate(360deg); } }
     .hero-avatar {
       position: relative;
       width: 100%; height: 100%;
-      border-radius: 50%;
+      border-radius: 18px;
       object-fit: cover;
-      border: 4px solid var(--bg);
+      border: 1px solid rgba(255,255,255,0.06);
       z-index: 1;
+      background: rgba(10, 18, 30, 0.8);
     }
     .hero-badge {
       position: absolute;
-      bottom: 10px; right: -10px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-hi);
+      bottom: 12px; right: -8px;
+      background: rgba(8, 15, 24, 0.92);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
       padding: 0.7rem 1rem;
       display: flex;
@@ -457,11 +428,8 @@
       font-size: 0.8rem;
       font-weight: 500;
       z-index: 2;
-      backdrop-filter: blur(10px);
-      animation: floatBadge 3s ease-in-out infinite;
     }
     .hero-badge .badge-icon { font-size: 1.2rem; }
-    @keyframes floatBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 
     /* Social bar */
     .hero-socials {
@@ -1107,6 +1075,9 @@
 <!-- Navbar -->
 <nav id="navbar">
   <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <img src="/Profile logo.png" alt="Saurabh Patil Logo" class="logo-img">
+    </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#education">Education</a></li>
@@ -1116,9 +1087,6 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" title="Toggle theme">
-        <i class="fas fa-moon"></i>
-      </button>
       <a href="Saurabh_Patil Mastercard.pdf" target="_blank" class="nav-resume">Resume ↗</a>
       <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
     </div>
@@ -1136,9 +1104,10 @@
         </div>
         <h1 class="hero-name">
           Hi, I'm<br>
-          <span>Saurabh Patil</span>
+          <span class="gradient-word">Saurabh Patil</span>
         </h1>
-        <p class="hero-role">Java Full Stack Developer | UI-UX Designer | Built scalable systems & ML solutions | Turning real-world problems into production-ready applications</p>
+        <p class="hero-role">Java Full Stack Developer | UI-UX Designer | Built scalable systems & ML solutions | 
+Ex-Cognizant | Turning real-world problems into production-ready applications</p>
           <div class="hero-highlights">
             <span>🏆 Hackathon Winner</span>
             <span>🎓 Cummins Scholar</span>
@@ -1165,7 +1134,7 @@
       </div>
       <div class="hero-image-wrap">
         <div class="hero-avatar-ring">
-          <img src="Saurabh Patil.png" alt="Saurabh Patil" class="hero-avatar">
+          <img src="/Saurabh Patil.png" alt="Saurabh Patil" class="hero-avatar">
           <div class="hero-badge">
             <span class="badge-icon">🏆</span>
             <div>
@@ -1189,14 +1158,14 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-image-wrap">
-        <img src="Saurabh Patil.png" alt="Saurabh Patil" class="about-image">
+        <img src="/Saurabh Patil.png" alt="Saurabh Patil" class="about-image">
         <div class="about-image-glow"></div>
       </div>
       <div>
         <div class="section-label">About Me</div>
         <h2 class="section-title">Engineer by Degree,<br>Developer by Passion</h2>
         <p style="color:var(--text-muted);margin-top:1.5rem;font-size:0.95rem;line-height:1.8;">
-            I’m an Electronics & Telecommunication Engineering graduate from VKBIET, Baramati (SPPU) with a CGPA of 8.79, currently working at Cognizant as a Programmer Analyst specializing in Java Full Stack development. I combine strong engineering fundamentals with modern software practices to build scalable systems — from machine learning solutions to enterprise-grade web applications.
+            I’m an Electronics & Telecommunication Engineering graduate from VKBIET, Baramati (SPPU) with a CGPA of 8.79, currently working at Cognizant as a Programmer Analyst Trainee specializing in Java Full Stack development. I combine strong engineering fundamentals with modern software practices to build scalable systems — from machine learning solutions to enterprise-grade web applications.
         </p>
         <p style="color:var(--text-muted);margin-top:1rem;font-size:0.95rem;line-height:1.8;">
           My experience spans 4 internships covering Frontend Development, Full-Stack, Machine Learning, and Signal Processing. I'm driven by building solutions that are both technically sound and genuinely useful.
@@ -1274,7 +1243,7 @@ where I can build scalable backend systems and impactful applications.</p>
       <div class="exp-card">
         <div class="exp-icon"><i class="fas fa-laptop-code"></i></div>
         <div class="exp-body">
-          <h3>Programmer Analyst — Java Full Stack Development</h3>
+          <h3>Programmer Analyst Trainee — Java Full Stack</h3>
           <div class="exp-company">Cognizant Technology Solutions</div>
           <ul class="exp-points">
             <li>Architected and developed full-stack applications using Spring Boot, Spring JPA, Thymeleaf, and Bootstrap</li>
@@ -1357,47 +1326,47 @@ where I can build scalable backend systems and impactful applications.</p>
 
       <!-- Item -->
       <div class="tech-card">
-        <img src="java.png" alt="Java">
+        <img src="/java.png" alt="Java">
         <span>Java</span>
       </div>
 
       <div class="tech-card">
-        <img src="springboot.png" alt="Spring Boot">
+        <img src="/springboot.png" alt="Spring Boot">
         <span>Spring Boot</span>
       </div>
 
       <div class="tech-card">
-        <img src="python.png" alt="Python">
+        <img src="/python.png" alt="Python">
         <span>Python</span>
       </div>
 
       <div class="tech-card">
-        <img src="machinelearning.png" alt="Machine Learning">
+        <img src="/machinelearning.png" alt="Machine Learning">
         <span>Machine Learning</span>
       </div>
 
       <div class="tech-card">
-        <img src="deeplearning.jpeg" alt="Deep Learning">
+        <img src="/deeplearning.jpeg" alt="Deep Learning">
         <span>Deep Learning</span>
       </div>
 
       <div class="tech-card">
-        <img src="uiux.jpeg" alt="UI UX">
+        <img src="/uiux.jpeg" alt="UI UX">
         <span>UI/UX</span>
       </div>
 
       <div class="tech-card">
-        <img src="api.png" alt="REST API">
+        <img src="/api.png" alt="REST API">
         <span>REST APIs</span>
       </div>
 
       <div class="tech-card">
-        <img src="react.png" alt="React">
+        <img src="/react.png" alt="React">
         <span>React</span>
       </div>
 
       <div class="tech-card">
-        <img src="fullstack.png" alt="Full Stack">
+        <img src="/fullstack.png" alt="Full Stack">
         <span>Full Stack Web Development</span>
       </div>
 
@@ -1414,7 +1383,7 @@ where I can build scalable backend systems and impactful applications.</p>
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="tfms.png" alt="Fleet Management System" loading="lazy">
+          <img src="/tfms.png" alt="Fleet Management System" loading="lazy">
           <div class="project-overlay">
             <a href="#" target="_blank" class="project-overlay-btn">
               <i class="fas fa-external-link-alt"></i> View Project
@@ -1441,9 +1410,9 @@ where I can build scalable backend systems and impactful applications.</p>
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="audio.jpg" alt="Audio Signal Comparison" loading="lazy">
+          <img src="/audio.png" alt="Audio Signal Comparison" loading="lazy">
           <div class="project-overlay">
-            <a href="https://github.com/saurabh070503/Audio-classification-app" target="_blank" class="project-overlay-btn">
+            <a href="https://github.com/saurabh070503/Audio-Classification-App" target="_blank" class="project-overlay-btn">
               <i class="fab fa-github"></i> View Project
             </a>
           </div>
@@ -1484,7 +1453,7 @@ where I can build scalable backend systems and impactful applications.</p>
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="full stack.jpg" alt="Bus Reservation" loading="lazy">
+          <img src="/full stack.jpg" alt="Bus Reservation" loading="lazy">
           <div class="project-overlay">
             <a href="https://www.linkedin.com/posts/saurabh0705_certificate-of-completion-activity-7217936069848092674-FrX2" target="_blank" class="project-overlay-btn">
               <i class="fas fa-external-link-alt"></i> View Project
@@ -1505,7 +1474,7 @@ where I can build scalable backend systems and impactful applications.</p>
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="logo.png" alt="E-Learning" loading="lazy" style="object-fit:contain;background:#111;">
+          <img src="/logo.png" alt="E-Learning" loading="lazy" style="object-fit:contain;background:#111;">
           <div class="project-overlay">
             <a href="https://saurabh070503.github.io/Techplement/" target="_blank" class="project-overlay-btn">
               <i class="fas fa-external-link-alt"></i> Live Demo
@@ -1525,7 +1494,7 @@ where I can build scalable backend systems and impactful applications.</p>
 
       <div class="project-card">
         <div class="project-thumb">
-          <img src="player.png" alt="Player Re-ID" loading="lazy">
+          <img src="/player.png" alt="Player Re-ID" loading="lazy">
           <div class="project-overlay">
             <a href="https://github.com/saurabh070503/Stealth-Mode" target="_blank" class="project-overlay-btn">
               <i class="fab fa-github"></i> View Project
@@ -1632,8 +1601,8 @@ where I can build scalable backend systems and impactful applications.</p>
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-logo">Saurabh Patil</div>
-      <div class="footer-copy">© 2026 Saurabh Patil. All rights reserved.</div>
+      <div class="footer-logo">SP.</div>
+      <div class="footer-copy">© 2025 Saurabh Patil. All rights reserved.</div>
       <div class="footer-socials">
         <a href="https://www.linkedin.com/in/saurabh0705" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://github.com/saurabh070503" target="_blank"><i class="fab fa-github"></i></a>
@@ -1662,15 +1631,6 @@ where I can build scalable backend systems and impactful applications.</p>
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  /* ---- THEME TOGGLE ---- */
-  const themeToggle = document.getElementById('themeToggle');
-  themeToggle.addEventListener('click', () => {
-    const html = document.documentElement;
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    themeToggle.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
   });
 
   /* ---- MOBILE MENU ---- */
@@ -1708,48 +1668,22 @@ where I can build scalable backend systems and impactful applications.</p>
   });
 
   /* ---- CONTACT FORM ---- */
-  /// ✅ Initialize EmailJS
-(function() {
-  emailjs.init("mZkeZVNcxNbFMdF77");
-})();
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-// ✅ CONTACT FORM
-const form = document.getElementById('contact-form');
+  const btn = this.querySelector('.form-submit');
+  btn.innerHTML = "Sending...";
+  btn.disabled = true;
 
-if (form) {
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const btn = this.querySelector('.form-submit');
-    btn.innerHTML = "Sending...";
-    btn.disabled = true;
-
-    // ✅ 1. Send message to YOU
-    const sendToMe = emailjs.sendForm(
-      "service_nh1nbo4",
-      "template_1dfanzm",
-      this
-    );
-
-    // ✅ 2. Auto reply to USER
-    const autoReply = emailjs.sendForm(
-      "service_nh1nbo4",
-      "template_7312vzs",
-      this
-    );
-
-    // ✅ Run both
-    sendToMe
+  emailjs.sendForm(
+    "service_qzlxh5s",   // paste service ID
+    "template_7312vzs",  // paste template ID
+    this
+  )
   .then(() => {
-    console.log("Sent to you ✅");
-    return autoReply;
-  })
-  .then(() => {
-    console.log("Auto reply sent ✅");
-
     btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
     btn.style.background = 'linear-gradient(135deg, #00d4aa, #0099cc)';
-    form.reset();
+    this.reset();
 
     setTimeout(() => {
       btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
@@ -1758,13 +1692,11 @@ if (form) {
     }, 3000);
   })
   .catch((error) => {
-    console.error("ERROR:", error);
-    alert(error.text);
+    console.error("EmailJS Error:", error);
     btn.innerHTML = "Failed ❌";
     btn.disabled = false;
   });
-  });
-}
+});
 
   /* ---- TOUCH SWIPE (kept from original) ---- */
   document.querySelectorAll('.carousel').forEach(carousel => {
@@ -1777,7 +1709,9 @@ if (form) {
     });
   });
 
-  
+  (function() {
+  emailjs.init("mZkeZVNcxNbFMdF77"); // paste your public key
+    })();
 </script>
 </body>
 </html>
