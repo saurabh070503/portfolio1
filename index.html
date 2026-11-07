@@ -1668,6 +1668,129 @@ where I can build scalable backend systems and impactful applications.</p>
   });
 
   /* ---- CONTACT FORM ---- */
+  const EMAILJS_PUBLIC_KEY = "mZkeZVNcxNbFMdF77";
+  const EMAILJS_SERVICE_ID = "service_nh1nbo4";
+  const CONTACT_TEMPLATE_ID = "template_1dfanzm";
+  const AUTO_REPLY_TEMPLATE_ID = "template_7312vzs";
+
+  if (typeof emailjs === 'undefined') {
+    console.error('EmailJS SDK failed to load. Check the script tag in the HTML head.');
+  } else {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+
+  function getIstTimestamp() {
+    const now = new Date();
+    return new Intl.DateTimeFormat('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    }).format(now);
+  }
+
+  function setButtonState(label, loading = false, success = false) {
+    const btn = document.querySelector('#contact-form .form-submit');
+    if (!btn) return;
+
+    btn.disabled = loading;
+    btn.innerHTML = label;
+
+    if (success) {
+      btn.style.background = 'linear-gradient(135deg, #00d4aa, #0099cc)';
+    } else {
+      btn.style.background = '';
+    }
+  }
+
+  document.getElementById('contact-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form = this;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (typeof emailjs === 'undefined') {
+      console.error('EmailJS SDK is unavailable.');
+      setButtonState('<i class="fas fa-times"></i> Failed — Try Again', false, false);
+      return;
+    }
+
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
+    const message = form.querySelector('textarea[name="message"]').value.trim();
+
+    form.querySelector('input[name="time"]').value = getIstTimestamp();
+    form.querySelector('input[name="title"]').value = 'Portfolio Contact Form';
+
+    setButtonState('<i class="fas fa-paper-plane"></i> Sending...', true, false);
+
+    try {
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, CONTACT_TEMPLATE_ID, form);
+
+      try {
+        await emailjs.sendForm(EMAILJS_SERVICE_ID, AUTO_REPLY_TEMPLATE_ID, form);
+        setButtonState('<i class="fas fa-check"></i> Message Sent!', false, true);
+        form.reset();
+      } catch (autoReplyError) {
+        console.error('EmailJS auto-reply failed:', autoReplyError);
+        setButtonState('<i class="fas fa-exclamation-triangle"></i> Message Received — Auto-reply failed', false, false);
+      }
+    } catch (contactError) {
+      console.error('EmailJS contact notification failed:', contactError);
+      setButtonState('<i class="fas fa-times"></i> Failed — Try Again', false, false);
+      return;
+    } finally {
+      window.setTimeout(() => {
+        const resetBtn = document.querySelector('#contact-form .form-submit');
+        if (resetBtn) {
+          resetBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+          resetBtn.style.background = '';
+          resetBtn.disabled = false;
+        }
+      }, 3000);
+    }
+  });
+
+  /* ---- TOUCH SWIPE (kept from original) ---- */
+  document.querySelectorAll('.carousel').forEach(carousel => {
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+    carousel.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      const amount = carousel.querySelector('.carousel-item')?.offsetWidth || 300;
+      if (Math.abs(diff) > 50) carousel.scrollBy({ left: diff > 0 ? amount : -amount, behavior: 'smooth' });
+    });
+  });
+
+</script>
+</body>
+</html>
+es) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ---- ACTIVE NAV ---- */
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
+    });
+    navAs.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  /* ---- CONTACT FORM ---- */
   document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
 
