@@ -1576,7 +1576,10 @@ where I can build scalable backend systems and impactful applications.</p>
           </a>
         </div>
       </div>
-      <form class="contact-form" id="contact-form">
+      <form class="contact-form" id="contact-form" novalidate>
+        <input type="hidden" name="title" value="Portfolio Contact Form">
+        <input type="hidden" name="time" value="">
+
         <div class="form-group">
           <label>Your Name</label>
           <input type="text" name="name" placeholder="Saurabh Patil" required>
@@ -1764,77 +1767,6 @@ where I can build scalable backend systems and impactful applications.</p>
     });
   });
 
-</script>
-</body>
-</html>
-es) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => observer.observe(el));
-
-  /* ---- ACTIVE NAV ---- */
-  const sections = document.querySelectorAll('section[id]');
-  const navAs = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
-    });
-    navAs.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
-  });
-
-  /* ---- CONTACT FORM ---- */
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const btn = this.querySelector('.form-submit');
-  btn.innerHTML = "Sending...";
-  btn.disabled = true;
-
-  emailjs.sendForm(
-    "service_qzlxh5s",   // paste service ID
-    "template_7312vzs",  // paste template ID
-    this
-  )
-  .then(() => {
-    btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-    btn.style.background = 'linear-gradient(135deg, #00d4aa, #0099cc)';
-    this.reset();
-
-    setTimeout(() => {
-      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-      btn.style.background = '';
-      btn.disabled = false;
-    }, 3000);
-  })
-  .catch((error) => {
-    console.error("EmailJS Error:", error);
-    btn.innerHTML = "Failed ❌";
-    btn.disabled = false;
-  });
-});
-
-  /* ---- TOUCH SWIPE (kept from original) ---- */
-  document.querySelectorAll('.carousel').forEach(carousel => {
-    let touchStartX = 0;
-    carousel.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-    carousel.addEventListener('touchend', e => {
-      const diff = touchStartX - e.changedTouches[0].screenX;
-      const amount = carousel.querySelector('.carousel-item')?.offsetWidth || 300;
-      if (Math.abs(diff) > 50) carousel.scrollBy({ left: diff > 0 ? amount : -amount, behavior: 'smooth' });
-    });
-  });
-
-  (function() {
-  emailjs.init("mZkeZVNcxNbFMdF77"); // paste your public key
-    })();
 </script>
 </body>
 </html>
